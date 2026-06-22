@@ -8760,6 +8760,115 @@ body.admin-body .dd-site-shell {
   }
 }
 
+/* Mobile stats: value and label in one readable line */
+@media (max-width: 760px) {
+  body:not(.admin-body) .stats-strip {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  body:not(.admin-body) .stats-strip div,
+  html[data-theme="light"] body:not(.admin-body) .stats-strip div {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 8px !important;
+    min-height: 64px !important;
+    padding: 18px 20px !important;
+  }
+
+  body:not(.admin-body) .stats-strip strong {
+    display: inline-flex !important;
+    align-items: center !important;
+    flex: 0 0 auto !important;
+    font-size: 30px !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+  }
+
+  body:not(.admin-body) .stats-strip strong::after {
+    content: "-";
+    margin-left: 8px;
+    color: var(--muted);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  body:not(.admin-body) .stats-strip span {
+    display: inline-block !important;
+    min-width: 0 !important;
+    color: var(--muted) !important;
+    font-size: 15px !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+  }
+}
+
+/* Mobile CTA buttons: keep them at the bottom and stretch inside cards */
+@media (max-width: 760px) {
+  body:not(.admin-body) .content-card,
+  html[data-theme="light"] body:not(.admin-body) .content-card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  body:not(.admin-body) .content-card .button,
+  body:not(.admin-body) .content-card .read-more-link,
+  html[data-theme="light"] body:not(.admin-body) .content-card .button,
+  html[data-theme="light"] body:not(.admin-body) .content-card .read-more-link {
+    display: inline-flex !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 46px !important;
+    margin-top: auto !important;
+    justify-content: center !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+  }
+
+  body:not(.admin-body) .partner-cta,
+  html[data-theme="light"] body:not(.admin-body) .partner-cta {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+    align-items: stretch !important;
+    justify-items: stretch !important;
+    width: min(calc(100% - 32px), 560px) !important;
+    padding: 28px 24px !important;
+    text-align: left !important;
+  }
+
+  body:not(.admin-body) .partner-cta > div,
+  html[data-theme="light"] body:not(.admin-body) .partner-cta > div {
+    max-width: 100% !important;
+    justify-items: start !important;
+    text-align: left !important;
+  }
+
+  body:not(.admin-body) .partner-cta h2,
+  body:not(.admin-body) .partner-cta p,
+  html[data-theme="light"] body:not(.admin-body) .partner-cta h2,
+  html[data-theme="light"] body:not(.admin-body) .partner-cta p {
+    text-align: left !important;
+  }
+
+  body:not(.admin-body) .partner-cta .button,
+  html[data-theme="light"] body:not(.admin-body) .partner-cta .button {
+    display: inline-flex !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 48px !important;
+    margin: 0 !important;
+    justify-self: stretch !important;
+    justify-content: center !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+  }
+}
+
 /* Absolute last mobile product reset: stop legacy grid areas from moving media/actions */
 @media (max-width: 760px) {
   html body:not(.admin-body).shop-page .product-card,
@@ -8805,5 +8914,108 @@ body.admin-body .dd-site-shell {
     grid-column: actions !important;
     grid-row: actions !important;
   }
+}
+
+/* Last mobile Telegram banner fix: prevent cropped text on narrow screens */
+@media (max-width: 760px) {
+  html body:not(.admin-body) .telegram-section,
+  html[data-theme="light"] body:not(.admin-body) .telegram-section {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "art"
+      "copy" !important;
+    gap: 18px !important;
+    width: min(calc(100% - 32px), 560px) !important;
+    max-width: 560px !important;
+    min-height: 0 !important;
+    margin: 34px auto !important;
+    padding: 24px 22px !important;
+    overflow: hidden !important;
+    text-align: left !important;
+  }
+
+  html body:not(.admin-body) .telegram-section .telegram-art,
+  html[data-theme="light"] body:not(.admin-body) .telegram-section .telegram-art {
+    grid-area: art !important;
+    justify-self: start !important;
+    width: 112px !important;
+    min-width: 112px !important;
+    height: 112px !important;
+    min-height: 112px !important;
+  }
+
+  html body:not(.admin-body) .telegram-section .graffiti-badge,
+  html[data-theme="light"] body:not(.admin-body) .telegram-section .graffiti-badge {
+    width: 76px !important;
+    height: 76px !important;
+    font-size: 28px !important;
+  }
+
+  html body:not(.admin-body) .telegram-section .telegram-copy,
+  html[data-theme="light"] body:not(.admin-body) .telegram-section .telegram-copy {
+    grid-area: copy !important;
+    display: grid !important;
+    justify-items: stretch !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    gap: 8px !important;
+    text-align: left !important;
+  }
+
+  html body:not(.admin-body) .telegram-section .telegram-copy h2,
+  html[data-theme="light"] body:not(.admin-body) .telegram-section .telegram-copy h2 {
+    max-width: 100% !important;
+    margin: 0 !important;
+    font-size: clamp(30px, 8.6vw, 42px) !important;
+    line-height: 0.98 !important;
+    text-align: left !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  html body:not(.admin-body) .telegram-section .telegram-copy p,
+  html[data-theme="light"] body:not(.admin-body) .telegram-section .telegram-copy p {
+    max-width: 100% !important;
+    text-align: left !important;
+  }
+
+  html body:not(.admin-body) .telegram-section .telegram-preview,
+  html[data-theme="light"] body:not(.admin-body) .telegram-section .telegram-preview {
+    display: none !important;
+  }
+
+  html body:not(.admin-body) .telegram-section .blue-button,
+  html[data-theme="light"] body:not(.admin-body) .telegram-section .blue-button {
+    grid-column: auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    margin-top: 8px !important;
+    justify-self: stretch !important;
+  }
+}
+
+/* Shop category multiselect markers */
+body:not(.admin-body) .shop-category-card em,
+html[data-theme="light"] body:not(.admin-body) .shop-category-card em {
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+body:not(.admin-body) .shop-category-card.active em,
+html[data-theme="light"] body:not(.admin-body) .shop-category-card.active em {
+  color: #071006 !important;
+  background: var(--acid) !important;
+  border-color: var(--acid) !important;
+  box-shadow: 0 0 22px rgba(198, 255, 0, 0.34) !important;
+  font-size: 20px !important;
+  transform: scale(0.96);
+}
+
+body:not(.admin-body) .shop-category-card.active,
+html[data-theme="light"] body:not(.admin-body) .shop-category-card.active {
+  border-color: rgba(198, 255, 0, 0.82) !important;
+  box-shadow: inset 0 0 0 1px rgba(198, 255, 0, 0.2), 0 0 28px rgba(198, 255, 0, 0.08) !important;
 }
 

@@ -10,6 +10,7 @@ let appliedCoupon = null;
 let cartToastTimer = null;
 const shopState = {
   filter: "all",
+  filters: [],
   sort: "price-desc",
   stockOnly: true,
   search: "",
@@ -26,7 +27,10 @@ function ddIsPage(name) {
 }
 
 const initialCategory = new URLSearchParams(window.location.search).get("category");
-if (initialCategory) shopState.filter = initialCategory;
+if (initialCategory) {
+  shopState.filter = initialCategory;
+  shopState.filters = [initialCategory];
+}
 
 const NEWS_CATEGORIES = [
   { id: "all", label: { ua: "Всі статті", en: "All articles", ru: "Все статьи" } },
@@ -72,6 +76,29 @@ function isVisible(key) {
 
 function visibleItems(items = []) {
   return (items || []).filter((item) => item.visible !== false);
+}
+
+function selectedShopCategories() {
+  if (Array.isArray(shopState.filters)) return shopState.filters.filter(Boolean);
+  return shopState.filter && shopState.filter !== "all" ? [shopState.filter] : [];
+}
+
+function isShopCategorySelected(id) {
+  return selectedShopCategories().includes(id);
+}
+
+function setShopCategories(ids = []) {
+  const uniqueIds = [...new Set(ids.filter((id) => id && id !== "all"))];
+  shopState.filters = uniqueIds;
+  shopState.filter = uniqueIds[0] || "all";
+}
+
+function scrollToShopProducts() {
+  const target = document.querySelector("[data-products]");
+  if (!target) return;
+  window.setTimeout(() => {
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, 60);
 }
 
 function showCartToast(productName = "") {
@@ -460,26 +487,29 @@ function renderFilters() {
   if (!filtersNode) return;
 
   const categories = [["all", t("all")], ...productCategories().map((category) => [category.id, categoryLabel(category.id)])];
+  const selectedCategories = selectedShopCategories();
 
   filtersNode.innerHTML = categories
-    .map(
-      ([value, label], index) =>
-        `<button class="${value === shopState.filter ? "active" : ""}" type="button" data-filter="${value}">${label}</button>`
-    )
+    .map(([value, label]) => {
+      const isActive = value === "all" ? !selectedCategories.length : selectedCategories.includes(value);
+      return `<button class="${isActive ? "active" : ""}" type="button" data-filter="${value}" aria-pressed="${isActive ? "true" : "false"}">${label}</button>`;
+    })
     .join("");
 }
 
 function renderShopCategories() {
   const node = document.querySelector("[data-shop-categories]");
   if (!node) return;
+  const selectedCategories = selectedShopCategories();
+  const allSelected = !selectedCategories.length;
   const allCard = `
-    <button class="shop-category-card all-category-card ${shopState.filter === "all" ? "active" : ""}" type="button" data-filter="all">
+    <button class="shop-category-card all-category-card ${allSelected ? "active" : ""}" type="button" data-filter="all" aria-pressed="${allSelected ? "true" : "false"}">
       <span class="shop-category-icon">DD</span>
       <span class="shop-category-copy">
         <strong>${t("all")}</strong>
         <small>${visibleItems(data.products).length} товаров</small>
       </span>
-      <em aria-label="Показать все">+</em>
+      <em aria-label="${allSelected ? "Выбрано" : "Показать все"}">${allSelected ? "✓" : "+"}</em>
     </button>
   `;
   node.innerHTML = allCard + productCategories()
@@ -488,14 +518,15 @@ function renderShopCategories() {
       const title = ddText(category.title, currentLang);
       const image = category.image || "";
       const icon = category.icon || "#";
+      const isSelected = selectedCategories.includes(category.id);
       return `
-          <button class="shop-category-card ${category.id === shopState.filter ? "active" : ""}" type="button" data-filter="${category.id}">
+          <button class="shop-category-card ${isSelected ? "active" : ""}" type="button" data-filter="${category.id}" aria-pressed="${isSelected ? "true" : "false"}">
           <span class="shop-category-icon" ${image ? `style="background-image:url('${image}')"` : ""}>${image ? "" : icon}</span>
           <span class="shop-category-copy">
             <strong>${title}</strong>
             <small>${count} товаров</small>
           </span>
-          <em aria-label="Открыть раздел">+</em>
+          <em aria-label="${isSelected ? "Выбрано" : "Выбрать раздел"}">${isSelected ? "✓" : "+"}</em>
         </button>
       `;
     })
@@ -624,7 +655,10 @@ function renderProducts() {
 
   const products = visibleItems(data.products)
     .map(localProduct)
-    .filter((product) => shopState.filter === "all" || product.category === shopState.filter)
+    .filter((product) => {
+      const selectedCategories = selectedShopCategories();
+      return !selectedCategories.length || selectedCategories.includes(product.category);
+    })
     .filter((product) => !shopState.stockOnly || product.inStock)
     .filter((product) => {
       if (!shopState.search) return true;
@@ -646,9 +680,11 @@ function renderProducts() {
       return Number(b.price || 0) - Number(a.price || 0);
     });
 
-  productsNode.classList.toggle("is-grouped", shopState.filter === "all" && !shopState.search);
+  const selectedCategories = selectedShopCategories();
+  const shouldGroupProducts = !shopState.search && selectedCategories.length !== 1;
+  productsNode.classList.toggle("is-grouped", shouldGroupProducts);
   productsNode.innerHTML = products.length
-    ? shopState.filter === "all" && !shopState.search
+    ? shouldGroupProducts
       ? groupedProductMarkup(products)
       : products.map(productCardMarkup).join("")
     : `<div class="shop-empty">Ничего не найдено</div>`;
@@ -1122,10 +1158,18 @@ document.addEventListener("click", (event) => {
 
   if (filterButton) {
     const filter = filterButton.dataset.filter;
-    shopState.filter = filter;
-    document.querySelectorAll("[data-filter]").forEach((item) => item.classList.remove("active"));
-    filterButton.classList.add("active");
+    if (filter === "all") {
+      setShopCategories([]);
+    } else {
+      const selectedCategories = selectedShopCategories();
+      setShopCategories(selectedCategories.includes(filter)
+        ? selectedCategories.filter((id) => id !== filter)
+        : [...selectedCategories, filter]);
+    }
+    renderFilters();
+    renderShopCategories();
     renderProducts();
+    scrollToShopProducts();
   }
 
   if (promoApply) {
