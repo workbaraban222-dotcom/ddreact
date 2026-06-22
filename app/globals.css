@@ -9019,3 +9019,47 @@ html[data-theme="light"] body:not(.admin-body) .shop-category-card.active {
   box-shadow: inset 0 0 0 1px rgba(198, 255, 0, 0.2), 0 0 28px rgba(198, 255, 0, 0.08) !important;
 }
 
+body:not(.admin-body) .shop-category-card:not(.active) em,
+html[data-theme="light"] body:not(.admin-body) .shop-category-card:not(.active) em {
+  color: rgba(198, 255, 0, 0.55) !important;
+  background: rgba(198, 255, 0, 0.08) !important;
+  border-color: rgba(198, 255, 0, 0.24) !important;
+}
+
+/* Mobile readability: advantages in one line, no Telegram eyebrow */
+@media (max-width: 760px) {
+  html body:not(.admin-body) .advantage-grid article,
+  html[data-theme="light"] body:not(.admin-body) .advantage-grid article {
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+    min-height: 84px !important;
+    padding: 18px 20px !important;
+  }
+
+  html body:not(.admin-body) .advantage-grid span,
+  html[data-theme="light"] body:not(.admin-body) .advantage-grid span {
+    flex: 0 0 48px !important;
+    width: 48px !important;
+    min-width: 48px !important;
+    height: 48px !important;
+  }
+
+  html body:not(.admin-body) .advantage-grid p,
+  html[data-theme="light"] body:not(.admin-body) .advantage-grid p {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    font-size: 14px !important;
+    line-height: 1.25 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  html body:not(.admin-body) .telegram-section .telegram-copy > .eyebrow,
+  html[data-theme="light"] body:not(.admin-body) .telegram-section .telegram-copy > .eyebrow {
+    display: none !important;
+  }
+}
+
