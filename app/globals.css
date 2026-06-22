@@ -9074,6 +9074,61 @@ body:not(.admin-body) .shop-category-card.active em::before {
   font-size: 21px !important;
 }
 
+/* Light theme polish: dark controls instead of acid outlines */
+html[data-theme="light"] body:not(.admin-body) .button.primary,
+html[data-theme="light"] body:not(.admin-body) .product-card button[data-add-cart]:not(.add-cart-mini),
+html[data-theme="light"] body:not(.admin-body) .product-detail-page .product-actions button[data-add-cart]:not(.add-cart-mini),
+html[data-theme="light"] body:not(.admin-body) .drop-row-actions button[data-add-cart]:not(.add-cart-mini),
+html[data-theme="light"] body:not(.admin-body) .checkout-button,
+html[data-theme="light"] body:not(.admin-body) .support-button {
+  color: #ffffff !important;
+  background: #252a2e !important;
+  border-color: #252a2e !important;
+  box-shadow: 0 14px 30px rgba(37, 42, 46, 0.16) !important;
+}
+
+html[data-theme="light"] body:not(.admin-body) .button.primary:hover,
+html[data-theme="light"] body:not(.admin-body) .product-card button[data-add-cart]:not(.add-cart-mini):hover,
+html[data-theme="light"] body:not(.admin-body) .product-detail-page .product-actions button[data-add-cart]:not(.add-cart-mini):hover,
+html[data-theme="light"] body:not(.admin-body) .drop-row-actions button[data-add-cart]:not(.add-cart-mini):hover {
+  color: #ffffff !important;
+  background: #111315 !important;
+  border-color: #111315 !important;
+}
+
+html[data-theme="light"] body:not(.admin-body) .shop-category-card.active,
+html[data-theme="light"] body:not(.admin-body) .shop-category-card:hover {
+  border-color: #2f3438 !important;
+  box-shadow: inset 0 0 0 1px rgba(47, 52, 56, 0.32), 0 16px 36px rgba(47, 52, 56, 0.1) !important;
+}
+
+html[data-theme="light"] body:not(.admin-body) .shop-category-card em {
+  color: #ffffff !important;
+  background: #111315 !important;
+  border-color: #111315 !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="light"] body:not(.admin-body) .shop-category-card.active em {
+  color: #ffffff !important;
+  background: #252a2e !important;
+  border-color: #252a2e !important;
+  box-shadow: 0 10px 22px rgba(37, 42, 46, 0.16) !important;
+}
+
+html[data-theme="light"] body:not(.admin-body) .shop-category-card em::before {
+  color: #ffffff !important;
+}
+
+html[data-theme="light"] body:not(.admin-body) .add-cart-mini,
+html[data-theme="light"] body:not(.admin-body) .product-detail-page .add-cart-mini,
+html[data-theme="light"] body:not(.admin-body) .product-buy-col .add-cart-mini {
+  color: #252a2e !important;
+  background: transparent !important;
+  border-color: #252a2e !important;
+  box-shadow: none !important;
+}
+
 /* Mobile readability: advantages in one line, no Telegram eyebrow */
 @media (max-width: 760px) {
   html body:not(.admin-body) .advantage-grid article,
