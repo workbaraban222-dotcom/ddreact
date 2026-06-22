@@ -26,7 +26,8 @@ export default function RootLayout({ children }) {
       <head>
         <style
           dangerouslySetInnerHTML={{
-            __html: "html.dd-boot:not(.dd-ready) body{visibility:hidden!important}html{overflow-y:scroll;scrollbar-gutter:stable both-edges;overflow-x:hidden}",
+            __html:
+              "html.dd-boot:not(.dd-ready) body{visibility:hidden!important}html{overflow-y:scroll;scrollbar-gutter:stable both-edges;overflow-x:hidden}@media (min-width:761px){body:not(.admin-body) .dd-site-shell{width:111.111111%;margin-left:50%;transform:translateX(-50%) scale(.9);transform-origin:top center}}body.admin-body .dd-site-shell{width:100%;margin-left:0;transform:none}",
           }}
         />
         <script
@@ -38,7 +39,7 @@ export default function RootLayout({ children }) {
       </head>
       <body suppressHydrationWarning>
         <BodyClassSync />
-        {children}
+        <div className="dd-site-shell">{children}</div>
         <Script src="/store.js?v=13" strategy="beforeInteractive" />
         <Script src="/script.js?v=50" strategy="afterInteractive" />
       </body>
