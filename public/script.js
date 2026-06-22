@@ -509,7 +509,7 @@ function renderShopCategories() {
         <strong>${t("all")}</strong>
         <small>${visibleItems(data.products).length} товаров</small>
       </span>
-      <em aria-label="${allSelected ? "Выбрано" : "Показать все"}">✓</em>
+      <em aria-label="${allSelected ? "Выбрано" : "Показать все"}"></em>
     </button>
   `;
   node.innerHTML = allCard + productCategories()
@@ -526,7 +526,7 @@ function renderShopCategories() {
             <strong>${title}</strong>
             <small>${count} товаров</small>
           </span>
-          <em aria-label="${isSelected ? "Выбрано" : "Выбрать раздел"}">✓</em>
+          <em aria-label="${isSelected ? "Выбрано" : "Выбрать раздел"}"></em>
         </button>
       `;
     })

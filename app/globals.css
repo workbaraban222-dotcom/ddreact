@@ -9026,6 +9026,54 @@ html[data-theme="light"] body:not(.admin-body) .shop-category-card:not(.active) 
   border-color: rgba(198, 255, 0, 0.24) !important;
 }
 
+/* Clean category marker: one symbol only, no old plus overlay */
+body:not(.admin-body) .shop-category-card em,
+html[data-theme="light"] body:not(.admin-body) .shop-category-card em {
+  position: relative !important;
+  display: grid !important;
+  place-items: center !important;
+  overflow: hidden !important;
+  font-size: 0 !important;
+  line-height: 1 !important;
+  text-indent: 0 !important;
+}
+
+body:not(.admin-body) .shop-category-card em::before,
+body:not(.admin-body) .shop-category-card em::after,
+html[data-theme="light"] body:not(.admin-body) .shop-category-card em::before,
+html[data-theme="light"] body:not(.admin-body) .shop-category-card em::after {
+  display: none !important;
+  content: none !important;
+}
+
+body:not(.admin-body) .shop-category-card em::marker,
+html[data-theme="light"] body:not(.admin-body) .shop-category-card em::marker {
+  content: "" !important;
+}
+
+body:not(.admin-body) .shop-category-card em {
+  color: rgba(198, 255, 0, 0.72) !important;
+}
+
+body:not(.admin-body) .shop-category-card em::before {
+  display: block !important;
+  content: "+" !important;
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  background: transparent !important;
+  color: currentColor !important;
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  transform: none !important;
+}
+
+body:not(.admin-body) .shop-category-card.active em::before {
+  content: "✓" !important;
+  font-size: 21px !important;
+}
+
 /* Mobile readability: advantages in one line, no Telegram eyebrow */
 @media (max-width: 760px) {
   html body:not(.admin-body) .advantage-grid article,
