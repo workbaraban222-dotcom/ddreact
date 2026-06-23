@@ -195,6 +195,21 @@ a {
   }
 }
 
+/* Product page heading scale */
+body:not(.admin-body).product-detail-page .product-detail-copy h1,
+html[data-theme="light"] body:not(.admin-body).product-detail-page .product-detail-copy h1 {
+  max-width: 680px !important;
+  font-size: clamp(32px, 4vw, 54px) !important;
+  line-height: 1 !important;
+}
+
+body:not(.admin-body).product-detail-page .product-detail-section .section-heading h2,
+html[data-theme="light"] body:not(.admin-body).product-detail-page .product-detail-section .section-heading h2 {
+  max-width: 560px !important;
+  font-size: clamp(30px, 3.4vw, 46px) !important;
+  line-height: 1.04 !important;
+}
+
 @keyframes floatCard {
   0%,
   100% {
@@ -9283,5 +9298,157 @@ html[data-theme="light"] body:not(.admin-body) .content-card.partner-card .butto
 body:not(.admin-body) .telegram-section .telegram-copy > .eyebrow,
 html[data-theme="light"] body:not(.admin-body) .telegram-section .telegram-copy > .eyebrow {
   display: none !important;
+}
+
+/* Final shop category choice marker */
+body:not(.admin-body) .shop-category-card em,
+html[data-theme="light"] body:not(.admin-body) .shop-category-card em,
+body:not(.admin-body).shop-page .shop-category-card em,
+html[data-theme="light"] body:not(.admin-body).shop-page .shop-category-card em {
+  position: relative !important;
+  display: inline-grid !important;
+  width: 40px !important;
+  min-width: 40px !important;
+  height: 40px !important;
+  place-items: center !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  color: transparent !important;
+  background: rgba(198, 255, 0, 0.1) !important;
+  border: 1px solid rgba(198, 255, 0, 0.28) !important;
+  border-radius: 12px !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  font-size: 0 !important;
+  font-style: normal !important;
+  line-height: 1 !important;
+}
+
+body:not(.admin-body) .shop-category-card em::before,
+html[data-theme="light"] body:not(.admin-body) .shop-category-card em::before,
+body:not(.admin-body).shop-page .shop-category-card em::before,
+html[data-theme="light"] body:not(.admin-body).shop-page .shop-category-card em::before {
+  content: "+" !important;
+  color: var(--acid) !important;
+  font-size: 20px !important;
+  font-weight: 850 !important;
+  line-height: 1 !important;
+}
+
+body:not(.admin-body) .shop-category-card.active em,
+html[data-theme="light"] body:not(.admin-body) .shop-category-card.active em,
+body:not(.admin-body).shop-page .shop-category-card.active em,
+html[data-theme="light"] body:not(.admin-body).shop-page .shop-category-card.active em {
+  background: #c6ff00 !important;
+  border-color: #c6ff00 !important;
+  box-shadow: 0 0 22px rgba(198, 255, 0, 0.34) !important;
+}
+
+body:not(.admin-body) .shop-category-card.active em::before,
+html[data-theme="light"] body:not(.admin-body) .shop-category-card.active em::before,
+body:not(.admin-body).shop-page .shop-category-card.active em::before,
+html[data-theme="light"] body:not(.admin-body).shop-page .shop-category-card.active em::before {
+  content: "\2713" !important;
+  color: #071006 !important;
+  font-size: 19px !important;
+  font-weight: 950 !important;
+}
+
+html[data-theme="light"] body:not(.admin-body) .shop-category-card em,
+html[data-theme="light"] body:not(.admin-body).shop-page .shop-category-card em,
+html[data-theme="light"] body:not(.admin-body) .shop-page .shop-category-card em {
+  background: rgba(17, 19, 21, 0.035) !important;
+  border-color: rgba(17, 19, 21, 0.2) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82) !important;
+}
+
+html[data-theme="light"] body:not(.admin-body) .shop-category-card em::before,
+html[data-theme="light"] body:not(.admin-body).shop-page .shop-category-card em::before,
+html[data-theme="light"] body:not(.admin-body) .shop-page .shop-category-card em::before {
+  color: #2f3336 !important;
+}
+
+html[data-theme="light"] body:not(.admin-body) .shop-category-card.active em,
+html[data-theme="light"] body:not(.admin-body).shop-page .shop-category-card.active em,
+html[data-theme="light"] body:not(.admin-body) .shop-page .shop-category-card.active em {
+  background: #c6ff00 !important;
+  border-color: #c6ff00 !important;
+  box-shadow: 0 0 22px rgba(198, 255, 0, 0.28) !important;
+}
+
+html[data-theme="light"] body:not(.admin-body) .shop-category-card.active em::before,
+html[data-theme="light"] body:not(.admin-body).shop-page .shop-category-card.active em::before,
+html[data-theme="light"] body:not(.admin-body) .shop-page .shop-category-card.active em::before {
+  color: #071006 !important;
+}
+
+/* Desktop Telegram banner alignment */
+@media (min-width: 901px) {
+  body:not(.admin-body) .telegram-section,
+  html[data-theme="light"] body:not(.admin-body) .telegram-section {
+    display: grid !important;
+    grid-template-columns: minmax(120px, 190px) minmax(0, 1fr) !important;
+    align-items: center !important;
+    gap: clamp(42px, 6vw, 86px) !important;
+    min-height: 270px !important;
+    padding: clamp(38px, 5vw, 68px) clamp(58px, 7vw, 96px) !important;
+  }
+
+  body:not(.admin-body) .telegram-section .telegram-art,
+  html[data-theme="light"] body:not(.admin-body) .telegram-section .telegram-art {
+    min-height: 0 !important;
+    justify-self: center !important;
+  }
+
+  body:not(.admin-body) .telegram-section .graffiti-badge,
+  html[data-theme="light"] body:not(.admin-body) .telegram-section .graffiti-badge {
+    width: clamp(88px, 7vw, 112px) !important;
+    height: clamp(88px, 7vw, 112px) !important;
+    font-size: clamp(30px, 3vw, 42px) !important;
+  }
+
+  body:not(.admin-body) .telegram-copy,
+  html[data-theme="light"] body:not(.admin-body) .telegram-copy {
+    display: grid !important;
+    grid-template-columns: minmax(280px, 0.95fr) minmax(150px, 0.45fr) minmax(190px, auto) !important;
+    align-items: center !important;
+    gap: clamp(22px, 3vw, 44px) !important;
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  body:not(.admin-body) .telegram-copy h2,
+  html[data-theme="light"] body:not(.admin-body) .telegram-copy h2 {
+    grid-column: 1 !important;
+    max-width: 390px !important;
+    margin: 0 !important;
+    font-size: clamp(42px, 4.4vw, 64px) !important;
+    line-height: 0.92 !important;
+  }
+
+  body:not(.admin-body) .telegram-copy p:not(.eyebrow),
+  html[data-theme="light"] body:not(.admin-body) .telegram-copy p:not(.eyebrow) {
+    grid-column: 2 !important;
+    max-width: 210px !important;
+    margin: 0 !important;
+    font-size: clamp(14px, 1.1vw, 16px) !important;
+    line-height: 1.28 !important;
+  }
+
+  body:not(.admin-body) .telegram-preview,
+  html[data-theme="light"] body:not(.admin-body) .telegram-preview {
+    display: none !important;
+  }
+
+  body:not(.admin-body) .telegram-section .blue-button,
+  html[data-theme="light"] body:not(.admin-body) .telegram-section .blue-button {
+    grid-column: 3 !important;
+    justify-self: end !important;
+    width: 220px !important;
+    min-width: 220px !important;
+    max-width: 220px !important;
+    min-height: 40px !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+  }
 }
 
